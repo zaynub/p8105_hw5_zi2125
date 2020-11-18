@@ -94,13 +94,55 @@ import one dataset
 data_1 = read_csv("data/con_01.csv")
 ```
 
-```{r, error = TRUE}
+```{r}
 path_df = 
   tibble(
-    path = list.files("data"),
+    path = list.files("data")
   ) %>% 
   mutate(
     path = str_c("data/", path),
-    data = map(.............))
-read_csv(path_df$path[[1]])
+    data = map(.x = path, ~read_csv(.x))) %>% 
+  unnest(data)
 ```
+
+Next I will tidy the unnested data: 
+
+```{r}
+path_tidy = 
+  path_df %>% 
+  separate(path, into = c("folder", "arm"), sep = 5) %>% 
+  separate(arm, into = c("arm", "id"), sep = "_") %>% 
+  separate(id, into = c("id", "file"), sep = 2) %>% 
+  select(-folder, -file) %>% 
+  mutate(
+    id = str_remove(id, "0")
+  ) %>% 
+  pivot_longer(
+    week_1:week_8,
+    names_to = "week", 
+    values_to = "value",
+    names_prefix = "week_"
+  )
+```
+
+Next I will create the spaghetti plot: 
+
+```{r}
+data_plot = 
+  path_tidy %>% 
+  group_by(arm, id) %>% 
+  ggplot(
+    aes(x = week, y = value, group = id, color = id)) + 
+  geom_point() +
+  geom_line() + 
+  geom_point(alpha = 0.5) + 
+  facet_grid(arm ~.)
+```
+
+
+
+
+
+
+
+

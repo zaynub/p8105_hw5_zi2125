@@ -110,19 +110,265 @@ data_1 = read_csv("data/con_01.csv")
 ``` r
 path_df = 
   tibble(
-    path = list.files("data"),
+    path = list.files("data")
   ) %>% 
   mutate(
     path = str_c("data/", path),
-    data = map(.............))
+    data = map(.x = path, ~read_csv(.x))) %>% 
+  unnest(data)
 ```
 
-    ## Error: Problem with `mutate()` input `data`.
-    ## x argument ".f" is missing, with no default
-    ## ℹ Input `data` is `map(.............)`.
+    ## Parsed with column specification:
+    ## cols(
+    ##   week_1 = col_double(),
+    ##   week_2 = col_double(),
+    ##   week_3 = col_double(),
+    ##   week_4 = col_double(),
+    ##   week_5 = col_double(),
+    ##   week_6 = col_double(),
+    ##   week_7 = col_double(),
+    ##   week_8 = col_double()
+    ## )
+    ## Parsed with column specification:
+    ## cols(
+    ##   week_1 = col_double(),
+    ##   week_2 = col_double(),
+    ##   week_3 = col_double(),
+    ##   week_4 = col_double(),
+    ##   week_5 = col_double(),
+    ##   week_6 = col_double(),
+    ##   week_7 = col_double(),
+    ##   week_8 = col_double()
+    ## )
+    ## Parsed with column specification:
+    ## cols(
+    ##   week_1 = col_double(),
+    ##   week_2 = col_double(),
+    ##   week_3 = col_double(),
+    ##   week_4 = col_double(),
+    ##   week_5 = col_double(),
+    ##   week_6 = col_double(),
+    ##   week_7 = col_double(),
+    ##   week_8 = col_double()
+    ## )
+    ## Parsed with column specification:
+    ## cols(
+    ##   week_1 = col_double(),
+    ##   week_2 = col_double(),
+    ##   week_3 = col_double(),
+    ##   week_4 = col_double(),
+    ##   week_5 = col_double(),
+    ##   week_6 = col_double(),
+    ##   week_7 = col_double(),
+    ##   week_8 = col_double()
+    ## )
+    ## Parsed with column specification:
+    ## cols(
+    ##   week_1 = col_double(),
+    ##   week_2 = col_double(),
+    ##   week_3 = col_double(),
+    ##   week_4 = col_double(),
+    ##   week_5 = col_double(),
+    ##   week_6 = col_double(),
+    ##   week_7 = col_double(),
+    ##   week_8 = col_double()
+    ## )
+    ## Parsed with column specification:
+    ## cols(
+    ##   week_1 = col_double(),
+    ##   week_2 = col_double(),
+    ##   week_3 = col_double(),
+    ##   week_4 = col_double(),
+    ##   week_5 = col_double(),
+    ##   week_6 = col_double(),
+    ##   week_7 = col_double(),
+    ##   week_8 = col_double()
+    ## )
+    ## Parsed with column specification:
+    ## cols(
+    ##   week_1 = col_double(),
+    ##   week_2 = col_double(),
+    ##   week_3 = col_double(),
+    ##   week_4 = col_double(),
+    ##   week_5 = col_double(),
+    ##   week_6 = col_double(),
+    ##   week_7 = col_double(),
+    ##   week_8 = col_double()
+    ## )
+    ## Parsed with column specification:
+    ## cols(
+    ##   week_1 = col_double(),
+    ##   week_2 = col_double(),
+    ##   week_3 = col_double(),
+    ##   week_4 = col_double(),
+    ##   week_5 = col_double(),
+    ##   week_6 = col_double(),
+    ##   week_7 = col_double(),
+    ##   week_8 = col_double()
+    ## )
+    ## Parsed with column specification:
+    ## cols(
+    ##   week_1 = col_double(),
+    ##   week_2 = col_double(),
+    ##   week_3 = col_double(),
+    ##   week_4 = col_double(),
+    ##   week_5 = col_double(),
+    ##   week_6 = col_double(),
+    ##   week_7 = col_double(),
+    ##   week_8 = col_double()
+    ## )
+    ## Parsed with column specification:
+    ## cols(
+    ##   week_1 = col_double(),
+    ##   week_2 = col_double(),
+    ##   week_3 = col_double(),
+    ##   week_4 = col_double(),
+    ##   week_5 = col_double(),
+    ##   week_6 = col_double(),
+    ##   week_7 = col_double(),
+    ##   week_8 = col_double()
+    ## )
+    ## Parsed with column specification:
+    ## cols(
+    ##   week_1 = col_double(),
+    ##   week_2 = col_double(),
+    ##   week_3 = col_double(),
+    ##   week_4 = col_double(),
+    ##   week_5 = col_double(),
+    ##   week_6 = col_double(),
+    ##   week_7 = col_double(),
+    ##   week_8 = col_double()
+    ## )
+    ## Parsed with column specification:
+    ## cols(
+    ##   week_1 = col_double(),
+    ##   week_2 = col_double(),
+    ##   week_3 = col_double(),
+    ##   week_4 = col_double(),
+    ##   week_5 = col_double(),
+    ##   week_6 = col_double(),
+    ##   week_7 = col_double(),
+    ##   week_8 = col_double()
+    ## )
+    ## Parsed with column specification:
+    ## cols(
+    ##   week_1 = col_double(),
+    ##   week_2 = col_double(),
+    ##   week_3 = col_double(),
+    ##   week_4 = col_double(),
+    ##   week_5 = col_double(),
+    ##   week_6 = col_double(),
+    ##   week_7 = col_double(),
+    ##   week_8 = col_double()
+    ## )
+    ## Parsed with column specification:
+    ## cols(
+    ##   week_1 = col_double(),
+    ##   week_2 = col_double(),
+    ##   week_3 = col_double(),
+    ##   week_4 = col_double(),
+    ##   week_5 = col_double(),
+    ##   week_6 = col_double(),
+    ##   week_7 = col_double(),
+    ##   week_8 = col_double()
+    ## )
+    ## Parsed with column specification:
+    ## cols(
+    ##   week_1 = col_double(),
+    ##   week_2 = col_double(),
+    ##   week_3 = col_double(),
+    ##   week_4 = col_double(),
+    ##   week_5 = col_double(),
+    ##   week_6 = col_double(),
+    ##   week_7 = col_double(),
+    ##   week_8 = col_double()
+    ## )
+    ## Parsed with column specification:
+    ## cols(
+    ##   week_1 = col_double(),
+    ##   week_2 = col_double(),
+    ##   week_3 = col_double(),
+    ##   week_4 = col_double(),
+    ##   week_5 = col_double(),
+    ##   week_6 = col_double(),
+    ##   week_7 = col_double(),
+    ##   week_8 = col_double()
+    ## )
+    ## Parsed with column specification:
+    ## cols(
+    ##   week_1 = col_double(),
+    ##   week_2 = col_double(),
+    ##   week_3 = col_double(),
+    ##   week_4 = col_double(),
+    ##   week_5 = col_double(),
+    ##   week_6 = col_double(),
+    ##   week_7 = col_double(),
+    ##   week_8 = col_double()
+    ## )
+    ## Parsed with column specification:
+    ## cols(
+    ##   week_1 = col_double(),
+    ##   week_2 = col_double(),
+    ##   week_3 = col_double(),
+    ##   week_4 = col_double(),
+    ##   week_5 = col_double(),
+    ##   week_6 = col_double(),
+    ##   week_7 = col_double(),
+    ##   week_8 = col_double()
+    ## )
+    ## Parsed with column specification:
+    ## cols(
+    ##   week_1 = col_double(),
+    ##   week_2 = col_double(),
+    ##   week_3 = col_double(),
+    ##   week_4 = col_double(),
+    ##   week_5 = col_double(),
+    ##   week_6 = col_double(),
+    ##   week_7 = col_double(),
+    ##   week_8 = col_double()
+    ## )
+    ## Parsed with column specification:
+    ## cols(
+    ##   week_1 = col_double(),
+    ##   week_2 = col_double(),
+    ##   week_3 = col_double(),
+    ##   week_4 = col_double(),
+    ##   week_5 = col_double(),
+    ##   week_6 = col_double(),
+    ##   week_7 = col_double(),
+    ##   week_8 = col_double()
+    ## )
+
+Next I will tidy the unnested data:
 
 ``` r
-read_csv(path_df$path[[1]])
+path_tidy = 
+  path_df %>% 
+  separate(path, into = c("folder", "arm"), sep = 5) %>% 
+  separate(arm, into = c("arm", "id"), sep = "_") %>% 
+  separate(id, into = c("id", "file"), sep = 2) %>% 
+  select(-folder, -file) %>% 
+  mutate(
+    id = str_remove(id, "0")
+  ) %>% 
+  pivot_longer(
+    week_1:week_8,
+    names_to = "week", 
+    values_to = "value",
+    names_prefix = "week_"
+  )
 ```
 
-    ## Error in is.connection(x): object 'path_df' not found
+Next I will create the spaghetti plot:
+
+``` r
+data_plot = 
+  path_tidy %>% 
+  group_by(arm, id) %>% 
+  ggplot(
+    aes(x = week, y = value, group = id, color = id)) + 
+  geom_point() +
+  geom_line() + 
+  geom_point(alpha = 0.5) + 
+  facet_grid(arm ~.)
+```
