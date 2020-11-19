@@ -87,7 +87,7 @@ results_df %>%
 
 <img src="hw5_files/figure-gfm/unnamed-chunk-5-1.png" width="90%" />
 
-## Problem 2 ideas
+## Problem 2
 
 import one dataset
 
@@ -364,6 +364,9 @@ Next I will create the spaghetti plot:
 ``` r
 data_plot = 
   path_tidy %>% 
+  mutate( 
+    arm = str_replace_all(arm, c("con" = "contol", "exp" = "experimental"))
+   ) %>% 
   group_by(arm, id) %>% 
   ggplot(
     aes(x = week, y = value, group = id, color = id)) + 
@@ -372,3 +375,55 @@ data_plot =
   geom_point(alpha = 0.5) + 
   facet_grid(arm ~.)
 ```
+
+## Problem 3
+
+``` r
+n = 30
+sigma = 5
+mu = 0
+t_test = function(n, mu = 2, sigma = 3) {
+  
+  sim_data = tibble(
+    x = rnorm(n, mean = mu, sd = sigma),
+  )
+  
+  sim_data %>%
+    t.test() %>% 
+    broom::tidy()
+}
+
+sim_results = 
+  rerun(5000, t_test(mu = 0)) %>% 
+  bind_rows()
+```
+
+    ## Error in rnorm(n, mean = mu, sd = sigma): argument "n" is missing, with no default
+
+``` r
+sim_results %>% 
+  select(estimate, p.value)
+```
+
+    ## Error in eval(lhs, parent, parent): object 'sim_results' not found
+
+``` r
+repeat_simulation = 
+  tibble(mean = c(0,1,2,3,4,5,6)) %>% 
+  mutate(
+    output_lists = map(.x = mean, ~rerun(5000, t_test(mu = .x))),
+    estimate_dfs = map(output_lists, bind_rows)) %>% 
+  select(-output_lists) %>% 
+  unnest(estimate_dfs)
+```
+
+    ## Error: Problem with `mutate()` input `output_lists`.
+    ## x argument "n" is missing, with no default
+    ## ℹ Input `output_lists` is `map(.x = mean, ~rerun(5000, t_test(mu = .x)))`.
+
+``` r
+repeat_simulation %>% 
+  select(mean, estimate, p.value)
+```
+
+    ## Error in eval(lhs, parent, parent): object 'repeat_simulation' not found
